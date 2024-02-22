@@ -1,0 +1,1117 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "toc_visible": true,
+      "mount_file_id": "1UN0UM2DKqUOd0fOoDLeHKTDBPvxaGXsq",
+      "authorship_tag": "ABX9TyPHG5+6+s7cX5r+kZwex+RE",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/VysakhVasudevan/intro-to-python-/blob/main/python\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "id": "3bIQJQWA777p"
+      },
+      "outputs": [],
+      "source": [
+        "import numpy as np\n",
+        "data=np.loadtxt('/content/drive/MyDrive/fit.txt',dtype='str')"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8rBJwmEd8S9-",
+        "outputId": "2d1795fa-a62a-44b8-9adf-0dc0417634c4"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([['06-10-2017', '5464', 'Neutral', '181', '5', 'Inactive'],\n",
+              "       ['07-10-2017', '6041', 'Sad', '197', '8', 'Inactive'],\n",
+              "       ['08-10-2017', '25', 'Sad', '0', '5', 'Inactive'],\n",
+              "       ['09-10-2017', '5461', 'Sad', '174', '4', 'Inactive'],\n",
+              "       ['10-10-2017', '6915', 'Neutral', '223', '5', 'Active'],\n",
+              "       ['11-10-2017', '4545', 'Sad', '149', '6', 'Inactive'],\n",
+              "       ['12-10-2017', '4340', 'Sad', '140', '6', 'Inactive'],\n",
+              "       ['13-10-2017', '1230', 'Sad', '38', '7', 'Inactive'],\n",
+              "       ['14-10-2017', '61', 'Sad', '1', '5', 'Inactive'],\n",
+              "       ['15-10-2017', '1258', 'Sad', '40', '6', 'Inactive'],\n",
+              "       ['16-10-2017', '3148', 'Sad', '101', '8', 'Inactive'],\n",
+              "       ['17-10-2017', '4687', 'Sad', '152', '5', 'Inactive'],\n",
+              "       ['18-10-2017', '4732', 'Happy', '150', '6', 'Active'],\n",
+              "       ['19-10-2017', '3519', 'Sad', '113', '7', 'Inactive'],\n",
+              "       ['20-10-2017', '1580', 'Sad', '49', '5', 'Inactive'],\n",
+              "       ['21-10-2017', '2822', 'Sad', '86', '6', 'Inactive'],\n",
+              "       ['22-10-2017', '181', 'Sad', '6', '8', 'Inactive'],\n",
+              "       ['23-10-2017', '3158', 'Neutral', '99', '5', 'Inactive'],\n",
+              "       ['24-10-2017', '4383', 'Neutral', '143', '4', 'Inactive'],\n",
+              "       ['25-10-2017', '3881', 'Neutral', '125', '5', 'Inactive'],\n",
+              "       ['26-10-2017', '4037', 'Neutral', '129', '6', 'Inactive'],\n",
+              "       ['27-10-2017', '202', 'Neutral', '6', '8', 'Inactive'],\n",
+              "       ['28-10-2017', '292', 'Neutral', '9', '5', 'Inactive'],\n",
+              "       ['29-10-2017', '330', 'Happy', '10', '6', 'Inactive'],\n",
+              "       ['30-10-2017', '2209', 'Neutral', '72', '5', 'Inactive'],\n",
+              "       ['31-10-2017', '4550', 'Happy', '150', '8', 'Active'],\n",
+              "       ['01-11-2017', '4435', 'Happy', '141', '5', 'Inactive'],\n",
+              "       ['02-11-2017', '4779', 'Happy', '156', '4', 'Inactive'],\n",
+              "       ['03-11-2017', '1831', 'Happy', '57', '5', 'Inactive'],\n",
+              "       ['04-11-2017', '2255', 'Happy', '72', '4', 'Inactive'],\n",
+              "       ['05-11-2017', '539', 'Happy', '17', '5', 'Active'],\n",
+              "       ['06-11-2017', '5464', 'Happy', '181', '4', 'Inactive'],\n",
+              "       ['07-11-2017', '6041', 'Neutral', '197', '3', 'Inactive'],\n",
+              "       ['08-11-2017', '4068', 'Happy', '131', '2', 'Inactive'],\n",
+              "       ['09-11-2017', '4683', 'Happy', '154', '9', 'Inactive'],\n",
+              "       ['10-11-2017', '4033', 'Happy', '137', '5', 'Inactive'],\n",
+              "       ['11-11-2017', '6314', 'Happy', '193', '6', 'Active'],\n",
+              "       ['12-11-2017', '614', 'Happy', '19', '4', 'Active'],\n",
+              "       ['13-11-2017', '3149', 'Happy', '101', '5', 'Active'],\n",
+              "       ['14-11-2017', '4005', 'Happy', '139', '8', 'Active'],\n",
+              "       ['15-11-2017', '4880', 'Happy', '164', '4', 'Active'],\n",
+              "       ['16-11-2017', '4136', 'Happy', '137', '5', 'Active'],\n",
+              "       ['17-11-2017', '705', 'Happy', '22', '6', 'Active'],\n",
+              "       ['18-11-2017', '570', 'Neutral', '17', '5', 'Active'],\n",
+              "       ['19-11-2017', '269', 'Happy', '9', '6', 'Active'],\n",
+              "       ['20-11-2017', '4275', 'Happy', '145', '5', 'Inactive'],\n",
+              "       ['21-11-2017', '5999', 'Happy', '192', '6', 'Inactive'],\n",
+              "       ['22-11-2017', '4421', 'Happy', '146', '5', 'Inactive'],\n",
+              "       ['23-11-2017', '6930', 'Happy', '234', '6', 'Inactive'],\n",
+              "       ['24-11-2017', '5195', 'Happy', '167', '5', 'Inactive'],\n",
+              "       ['25-11-2017', '546', 'Happy', '16', '6', 'Inactive'],\n",
+              "       ['26-11-2017', '493', 'Happy', '17', '7', 'Active'],\n",
+              "       ['27-11-2017', '995', 'Happy', '32', '6', 'Active'],\n",
+              "       ['28-11-2017', '1163', 'Neutral', '35', '7', 'Active'],\n",
+              "       ['29-11-2017', '6676', 'Sad', '220', '6', 'Active'],\n",
+              "       ['30-11-2017', '3608', 'Happy', '116', '5', 'Active'],\n",
+              "       ['01-12-2017', '774', 'Happy', '23', '6', 'Active'],\n",
+              "       ['02-12-2017', '1421', 'Happy', '44', '7', 'Active'],\n",
+              "       ['03-12-2017', '4064', 'Happy', '131', '8', 'Active'],\n",
+              "       ['04-12-2017', '2725', 'Happy', '86', '8', 'Active'],\n",
+              "       ['05-12-2017', '5934', 'Happy', '194', '7', 'Active'],\n",
+              "       ['06-12-2017', '1867', 'Happy', '60', '8', 'Active'],\n",
+              "       ['07-12-2017', '3721', 'Sad', '121', '5', 'Active'],\n",
+              "       ['08-12-2017', '2374', 'Neutral', '76', '4', 'Inactive'],\n",
+              "       ['09-12-2017', '2909', 'Neutral', '93', '3', 'Active'],\n",
+              "       ['10-12-2017', '1648', 'Sad', '53', '3', 'Active'],\n",
+              "       ['11-12-2017', '799', 'Sad', '25', '4', 'Inactive'],\n",
+              "       ['12-12-2017', '7102', 'Neutral', '227', '5', 'Active'],\n",
+              "       ['13-12-2017', '3941', 'Neutral', '125', '5', 'Active'],\n",
+              "       ['14-12-2017', '7422', 'Happy', '243', '5', 'Active'],\n",
+              "       ['15-12-2017', '437', 'Neutral', '14', '3', 'Active'],\n",
+              "       ['16-12-2017', '1231', 'Neutral', '39', '4', 'Active'],\n",
+              "       ['17-12-2017', '1696', 'Sad', '55', '4', 'Inactive'],\n",
+              "       ['18-12-2017', '4921', 'Neutral', '158', '5', 'Active'],\n",
+              "       ['19-12-2017', '221', 'Sad', '7', '5', 'Active'],\n",
+              "       ['20-12-2017', '6500', 'Neutral', '213', '5', 'Active'],\n",
+              "       ['21-12-2017', '3575', 'Neutral', '116', '5', 'Active'],\n",
+              "       ['22-12-2017', '4061', 'Sad', '129', '5', 'Inactive'],\n",
+              "       ['23-12-2017', '651', 'Sad', '21', '5', 'Inactive'],\n",
+              "       ['24-12-2017', '753', 'Sad', '28', '4', 'Inactive'],\n",
+              "       ['25-12-2017', '518', 'Sad', '16', '3', 'Inactive'],\n",
+              "       ['26-12-2017', '5537', 'Happy', '180', '4', 'Active'],\n",
+              "       ['27-12-2017', '4108', 'Neutral', '138', '5', 'Active'],\n",
+              "       ['28-12-2017', '5376', 'Happy', '176', '5', 'Active'],\n",
+              "       ['29-12-2017', '3066', 'Neutral', '99', '4', 'Active'],\n",
+              "       ['30-12-2017', '177', 'Sad', '5', '5', 'Inactive'],\n",
+              "       ['31-12-2017', '36', 'Sad', '1', '3', 'Inactive'],\n",
+              "       ['01-01-2018', '299', 'Sad', '10', '3', 'Inactive'],\n",
+              "       ['02-01-2018', '1447', 'Neutral', '47', '3', 'Inactive'],\n",
+              "       ['03-01-2018', '2599', 'Neutral', '84', '2', 'Inactive'],\n",
+              "       ['04-01-2018', '702', 'Sad', '23', '3', 'Inactive'],\n",
+              "       ['05-01-2018', '133', 'Sad', '4', '2', 'Inactive'],\n",
+              "       ['06-01-2018', '153', 'Happy', '0', '8', 'Inactive'],\n",
+              "       ['07-01-2018', '500', 'Neutral', '0', '5', 'Active'],\n",
+              "       ['08-01-2018', '2127', 'Neutral', '0', '5', 'Inactive'],\n",
+              "       ['09-01-2018', '2203', 'Happy', '0', '5', 'Active']], dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 3
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data[:5]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8BTqQHFJ8TOd",
+        "outputId": "ccca0c4b-8789-41f5-8007-93b2ffee0d45"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([['06-10-2017', '5464', 'Neutral', '181', '5', 'Inactive'],\n",
+              "       ['07-10-2017', '6041', 'Sad', '197', '8', 'Inactive'],\n",
+              "       ['08-10-2017', '25', 'Sad', '0', '5', 'Inactive'],\n",
+              "       ['09-10-2017', '5461', 'Sad', '174', '4', 'Inactive'],\n",
+              "       ['10-10-2017', '6915', 'Neutral', '223', '5', 'Active']],\n",
+              "      dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 4
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data[:1]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "75DlfysK8TbM",
+        "outputId": "7aa50200-4707-4e8c-ea2f-60b9e5c7b4af"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([['06-10-2017', '5464', 'Neutral', '181', '5', 'Inactive']],\n",
+              "      dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 5
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data.shape"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "OLVw4nEg8TyU",
+        "outputId": "e52019b8-b769-42d1-f964-a3164ed3273c"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(96, 6)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 6
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data[:0]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7KQblG008T_U",
+        "outputId": "74a07ccc-0af1-4f7c-f09e-5b90dab8d4ff"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([], shape=(0, 6), dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 8
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data.T[0]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "pNNVrY9c9i79",
+        "outputId": "a33cdf1c-dfdf-4d6e-e5bc-839cef9c1c60"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array(['06-10-2017', '07-10-2017', '08-10-2017', '09-10-2017',\n",
+              "       '10-10-2017', '11-10-2017', '12-10-2017', '13-10-2017',\n",
+              "       '14-10-2017', '15-10-2017', '16-10-2017', '17-10-2017',\n",
+              "       '18-10-2017', '19-10-2017', '20-10-2017', '21-10-2017',\n",
+              "       '22-10-2017', '23-10-2017', '24-10-2017', '25-10-2017',\n",
+              "       '26-10-2017', '27-10-2017', '28-10-2017', '29-10-2017',\n",
+              "       '30-10-2017', '31-10-2017', '01-11-2017', '02-11-2017',\n",
+              "       '03-11-2017', '04-11-2017', '05-11-2017', '06-11-2017',\n",
+              "       '07-11-2017', '08-11-2017', '09-11-2017', '10-11-2017',\n",
+              "       '11-11-2017', '12-11-2017', '13-11-2017', '14-11-2017',\n",
+              "       '15-11-2017', '16-11-2017', '17-11-2017', '18-11-2017',\n",
+              "       '19-11-2017', '20-11-2017', '21-11-2017', '22-11-2017',\n",
+              "       '23-11-2017', '24-11-2017', '25-11-2017', '26-11-2017',\n",
+              "       '27-11-2017', '28-11-2017', '29-11-2017', '30-11-2017',\n",
+              "       '01-12-2017', '02-12-2017', '03-12-2017', '04-12-2017',\n",
+              "       '05-12-2017', '06-12-2017', '07-12-2017', '08-12-2017',\n",
+              "       '09-12-2017', '10-12-2017', '11-12-2017', '12-12-2017',\n",
+              "       '13-12-2017', '14-12-2017', '15-12-2017', '16-12-2017',\n",
+              "       '17-12-2017', '18-12-2017', '19-12-2017', '20-12-2017',\n",
+              "       '21-12-2017', '22-12-2017', '23-12-2017', '24-12-2017',\n",
+              "       '25-12-2017', '26-12-2017', '27-12-2017', '28-12-2017',\n",
+              "       '29-12-2017', '30-12-2017', '31-12-2017', '01-01-2018',\n",
+              "       '02-01-2018', '03-01-2018', '04-01-2018', '05-01-2018',\n",
+              "       '06-01-2018', '07-01-2018', '08-01-2018', '09-01-2018'],\n",
+              "      dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 9
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data.T[:5]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VPzf-ULo94TS",
+        "outputId": "f509337f-d9d7-4d56-d516-905b19fb8149"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([['06-10-2017', '07-10-2017', '08-10-2017', '09-10-2017',\n",
+              "        '10-10-2017', '11-10-2017', '12-10-2017', '13-10-2017',\n",
+              "        '14-10-2017', '15-10-2017', '16-10-2017', '17-10-2017',\n",
+              "        '18-10-2017', '19-10-2017', '20-10-2017', '21-10-2017',\n",
+              "        '22-10-2017', '23-10-2017', '24-10-2017', '25-10-2017',\n",
+              "        '26-10-2017', '27-10-2017', '28-10-2017', '29-10-2017',\n",
+              "        '30-10-2017', '31-10-2017', '01-11-2017', '02-11-2017',\n",
+              "        '03-11-2017', '04-11-2017', '05-11-2017', '06-11-2017',\n",
+              "        '07-11-2017', '08-11-2017', '09-11-2017', '10-11-2017',\n",
+              "        '11-11-2017', '12-11-2017', '13-11-2017', '14-11-2017',\n",
+              "        '15-11-2017', '16-11-2017', '17-11-2017', '18-11-2017',\n",
+              "        '19-11-2017', '20-11-2017', '21-11-2017', '22-11-2017',\n",
+              "        '23-11-2017', '24-11-2017', '25-11-2017', '26-11-2017',\n",
+              "        '27-11-2017', '28-11-2017', '29-11-2017', '30-11-2017',\n",
+              "        '01-12-2017', '02-12-2017', '03-12-2017', '04-12-2017',\n",
+              "        '05-12-2017', '06-12-2017', '07-12-2017', '08-12-2017',\n",
+              "        '09-12-2017', '10-12-2017', '11-12-2017', '12-12-2017',\n",
+              "        '13-12-2017', '14-12-2017', '15-12-2017', '16-12-2017',\n",
+              "        '17-12-2017', '18-12-2017', '19-12-2017', '20-12-2017',\n",
+              "        '21-12-2017', '22-12-2017', '23-12-2017', '24-12-2017',\n",
+              "        '25-12-2017', '26-12-2017', '27-12-2017', '28-12-2017',\n",
+              "        '29-12-2017', '30-12-2017', '31-12-2017', '01-01-2018',\n",
+              "        '02-01-2018', '03-01-2018', '04-01-2018', '05-01-2018',\n",
+              "        '06-01-2018', '07-01-2018', '08-01-2018', '09-01-2018'],\n",
+              "       ['5464', '6041', '25', '5461', '6915', '4545', '4340', '1230',\n",
+              "        '61', '1258', '3148', '4687', '4732', '3519', '1580', '2822',\n",
+              "        '181', '3158', '4383', '3881', '4037', '202', '292', '330',\n",
+              "        '2209', '4550', '4435', '4779', '1831', '2255', '539', '5464',\n",
+              "        '6041', '4068', '4683', '4033', '6314', '614', '3149', '4005',\n",
+              "        '4880', '4136', '705', '570', '269', '4275', '5999', '4421',\n",
+              "        '6930', '5195', '546', '493', '995', '1163', '6676', '3608',\n",
+              "        '774', '1421', '4064', '2725', '5934', '1867', '3721', '2374',\n",
+              "        '2909', '1648', '799', '7102', '3941', '7422', '437', '1231',\n",
+              "        '1696', '4921', '221', '6500', '3575', '4061', '651', '753',\n",
+              "        '518', '5537', '4108', '5376', '3066', '177', '36', '299',\n",
+              "        '1447', '2599', '702', '133', '153', '500', '2127', '2203'],\n",
+              "       ['Neutral', 'Sad', 'Sad', 'Sad', 'Neutral', 'Sad', 'Sad', 'Sad',\n",
+              "        'Sad', 'Sad', 'Sad', 'Sad', 'Happy', 'Sad', 'Sad', 'Sad', 'Sad',\n",
+              "        'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral',\n",
+              "        'Happy', 'Neutral', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "        'Happy', 'Happy', 'Neutral', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "        'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Neutral',\n",
+              "        'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "        'Happy', 'Happy', 'Neutral', 'Sad', 'Happy', 'Happy', 'Happy',\n",
+              "        'Happy', 'Happy', 'Happy', 'Happy', 'Sad', 'Neutral', 'Neutral',\n",
+              "        'Sad', 'Sad', 'Neutral', 'Neutral', 'Happy', 'Neutral',\n",
+              "        'Neutral', 'Sad', 'Neutral', 'Sad', 'Neutral', 'Neutral', 'Sad',\n",
+              "        'Sad', 'Sad', 'Sad', 'Happy', 'Neutral', 'Happy', 'Neutral',\n",
+              "        'Sad', 'Sad', 'Sad', 'Neutral', 'Neutral', 'Sad', 'Sad', 'Happy',\n",
+              "        'Neutral', 'Neutral', 'Happy'],\n",
+              "       ['181', '197', '0', '174', '223', '149', '140', '38', '1', '40',\n",
+              "        '101', '152', '150', '113', '49', '86', '6', '99', '143', '125',\n",
+              "        '129', '6', '9', '10', '72', '150', '141', '156', '57', '72',\n",
+              "        '17', '181', '197', '131', '154', '137', '193', '19', '101',\n",
+              "        '139', '164', '137', '22', '17', '9', '145', '192', '146', '234',\n",
+              "        '167', '16', '17', '32', '35', '220', '116', '23', '44', '131',\n",
+              "        '86', '194', '60', '121', '76', '93', '53', '25', '227', '125',\n",
+              "        '243', '14', '39', '55', '158', '7', '213', '116', '129', '21',\n",
+              "        '28', '16', '180', '138', '176', '99', '5', '1', '10', '47',\n",
+              "        '84', '23', '4', '0', '0', '0', '0'],\n",
+              "       ['5', '8', '5', '4', '5', '6', '6', '7', '5', '6', '8', '5', '6',\n",
+              "        '7', '5', '6', '8', '5', '4', '5', '6', '8', '5', '6', '5', '8',\n",
+              "        '5', '4', '5', '4', '5', '4', '3', '2', '9', '5', '6', '4', '5',\n",
+              "        '8', '4', '5', '6', '5', '6', '5', '6', '5', '6', '5', '6', '7',\n",
+              "        '6', '7', '6', '5', '6', '7', '8', '8', '7', '8', '5', '4', '3',\n",
+              "        '3', '4', '5', '5', '5', '3', '4', '4', '5', '5', '5', '5', '5',\n",
+              "        '5', '4', '3', '4', '5', '5', '4', '5', '3', '3', '3', '2', '3',\n",
+              "        '2', '8', '5', '5', '5']], dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 10
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# New Section"
+      ],
+      "metadata": {
+        "id": "Qmyh1paX_g6G"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data.T[-1]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "g-kSt3B09-dR",
+        "outputId": "c532bc1f-04e4-4a46-cd83-82fdf275c2d8"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array(['Inactive', 'Inactive', 'Inactive', 'Inactive', 'Active',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Active', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Active', 'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Active',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Active', 'Active', 'Active', 'Active', 'Active', 'Active',\n",
+              "       'Active', 'Active', 'Active', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Active', 'Active', 'Active',\n",
+              "       'Active', 'Active', 'Active', 'Active', 'Active', 'Active',\n",
+              "       'Active', 'Active', 'Active', 'Inactive', 'Active', 'Active',\n",
+              "       'Inactive', 'Active', 'Active', 'Active', 'Active', 'Active',\n",
+              "       'Inactive', 'Active', 'Active', 'Active', 'Active', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Active', 'Active', 'Active',\n",
+              "       'Active', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Active',\n",
+              "       'Inactive', 'Active'], dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 13
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "date, step_count, mood, calories_burned, hours_of_sleep, activity_status =  data.T"
+      ],
+      "metadata": {
+        "id": "wnrSZJir_2G9"
+      },
+      "execution_count": 14,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mood"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "cXsNYku8At8U",
+        "outputId": "73ebe64f-5241-439f-f471-ea6afc2295d7"
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array(['Neutral', 'Sad', 'Sad', 'Sad', 'Neutral', 'Sad', 'Sad', 'Sad',\n",
+              "       'Sad', 'Sad', 'Sad', 'Sad', 'Happy', 'Sad', 'Sad', 'Sad', 'Sad',\n",
+              "       'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral',\n",
+              "       'Happy', 'Neutral', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Neutral', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Neutral',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Neutral', 'Sad', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Sad', 'Neutral', 'Neutral',\n",
+              "       'Sad', 'Sad', 'Neutral', 'Neutral', 'Happy', 'Neutral', 'Neutral',\n",
+              "       'Sad', 'Neutral', 'Sad', 'Neutral', 'Neutral', 'Sad', 'Sad', 'Sad',\n",
+              "       'Sad', 'Happy', 'Neutral', 'Happy', 'Neutral', 'Sad', 'Sad', 'Sad',\n",
+              "       'Neutral', 'Neutral', 'Sad', 'Sad', 'Happy', 'Neutral', 'Neutral',\n",
+              "       'Happy'], dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 15
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "activity_status"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hlt0EBGIAvDF",
+        "outputId": "5d7048b1-9b30-4e08-fc5c-cfc997c5bf44"
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array(['Inactive', 'Inactive', 'Inactive', 'Inactive', 'Active',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Active', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Active', 'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Active',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Active', 'Active', 'Active', 'Active', 'Active', 'Active',\n",
+              "       'Active', 'Active', 'Active', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Active', 'Active', 'Active',\n",
+              "       'Active', 'Active', 'Active', 'Active', 'Active', 'Active',\n",
+              "       'Active', 'Active', 'Active', 'Inactive', 'Active', 'Active',\n",
+              "       'Inactive', 'Active', 'Active', 'Active', 'Active', 'Active',\n",
+              "       'Inactive', 'Active', 'Active', 'Active', 'Active', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Active', 'Active', 'Active',\n",
+              "       'Active', 'Inactive', 'Inactive', 'Inactive', 'Inactive',\n",
+              "       'Inactive', 'Inactive', 'Inactive', 'Inactive', 'Active',\n",
+              "       'Inactive', 'Active'], dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 16
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mood.dtype"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "EP3cZs9IAyXd",
+        "outputId": "6a1dc794-eaaa-4fab-92cd-5c16c6d0ff24"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "dtype('<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 17
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "hours_of_sleep=np.array(hours_of_sleep, dtype = 'int')"
+      ],
+      "metadata": {
+        "id": "KARmy-vVA4q8"
+      },
+      "execution_count": 24,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "hours_of_sleep.dtype"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xoeoNtuZBQf0",
+        "outputId": "9e524962-ff4e-4ba9-9644-99b77791d9d0"
+      },
+      "execution_count": 25,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "dtype('int64')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 25
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "calories_burned=np.array(calories_burned,dtype='int')\n",
+        "calories_burned.dtype"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "L-77NrqFBVP6",
+        "outputId": "c66735ec-6496-4ae4-cb7b-d117d2407c28"
+      },
+      "execution_count": 27,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "dtype('int64')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 27
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "step_count=np.array(step_count,dtype='int')\n",
+        "step_count.dtype"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Z8mFIEIHCZgZ",
+        "outputId": "3aac1371-07eb-42d5-adff-8d9e71046401"
+      },
+      "execution_count": 32,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "dtype('int64')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 32
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mood"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5_R-2EbwDHTc",
+        "outputId": "28587f12-a8fe-4d0e-8d6f-cd76eaa01e8b"
+      },
+      "execution_count": 33,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array(['Neutral', 'Sad', 'Sad', 'Sad', 'Neutral', 'Sad', 'Sad', 'Sad',\n",
+              "       'Sad', 'Sad', 'Sad', 'Sad', 'Happy', 'Sad', 'Sad', 'Sad', 'Sad',\n",
+              "       'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral',\n",
+              "       'Happy', 'Neutral', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Neutral', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Neutral',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Neutral', 'Sad', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Sad', 'Neutral', 'Neutral',\n",
+              "       'Sad', 'Sad', 'Neutral', 'Neutral', 'Happy', 'Neutral', 'Neutral',\n",
+              "       'Sad', 'Neutral', 'Sad', 'Neutral', 'Neutral', 'Sad', 'Sad', 'Sad',\n",
+              "       'Sad', 'Happy', 'Neutral', 'Happy', 'Neutral', 'Sad', 'Sad', 'Sad',\n",
+              "       'Neutral', 'Neutral', 'Sad', 'Sad', 'Happy', 'Neutral', 'Neutral',\n",
+              "       'Happy'], dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 33
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.unique(mood)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "eoGEyR1xC86C",
+        "outputId": "91965a40-96d7-4633-9b09-ab2638e148a8"
+      },
+      "execution_count": 34,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array(['Happy', 'Neutral', 'Sad'], dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 34
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "step_count.mean()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "SwkP8ZZNDT-D",
+        "outputId": "07164b50-0b99-4f68-809a-3d81293ae09a"
+      },
+      "execution_count": 37,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "2935.9375"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 37
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "calories_burned.mean()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Ppxco3-7DcVa",
+        "outputId": "9160395a-d9f0-4fad-f8af-8ddab5669502"
+      },
+      "execution_count": 38,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "93.44791666666667"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 38
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.mean(step_count)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "q2gkT0IUDnkW",
+        "outputId": "c47a2554-158b-4151-b35a-ecbe8d350e06"
+      },
+      "execution_count": 39,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "2935.9375"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 39
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.max(step_count)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "F9WoOiyiDt02",
+        "outputId": "6b688c99-bcda-44cb-d897-dcd505f598dc"
+      },
+      "execution_count": 40,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "7422"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 40
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.argmax(step_count)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "92609A2IET_y",
+        "outputId": "db15bb52-51c4-4edd-a4bb-88432c547a9a"
+      },
+      "execution_count": 41,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "69"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 41
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.mean(step_count[mood=='Sad'])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jbJIvLOxEdD6",
+        "outputId": "f82c12ac-6b49-419a-c5d6-2ded463c970e"
+      },
+      "execution_count": 50,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "2103.0689655172414"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 50
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.mean(calories_burned[mood=='Sad'])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bDl4mVcSExQC",
+        "outputId": "122a5f0f-19e3-4e05-8219-a5666a83a71a"
+      },
+      "execution_count": 51,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "67.72413793103448"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 51
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.sort(mood)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qJbt3gjYHHGx",
+        "outputId": "d27980c0-645b-4957-9174-4a714dc6bcb1"
+      },
+      "execution_count": 52,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array(['Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Happy',\n",
+              "       'Happy', 'Happy', 'Happy', 'Happy', 'Happy', 'Neutral', 'Neutral',\n",
+              "       'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral',\n",
+              "       'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral',\n",
+              "       'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral',\n",
+              "       'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral', 'Neutral',\n",
+              "       'Neutral', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad',\n",
+              "       'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad',\n",
+              "       'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad', 'Sad',\n",
+              "       'Sad', 'Sad', 'Sad'], dtype='<U10')"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 52
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.sort(hours_of_sleep[mood=='Sad'])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "0UF7Jw1lHt4K",
+        "outputId": "731db0ac-c73f-45c4-a90b-5826b40bab52"
+      },
+      "execution_count": 54,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6,\n",
+              "       6, 6, 7, 7, 8, 8, 8])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 54
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.std(step_count[mood=='Sad'])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "z2AYhVFOH2Jq",
+        "outputId": "431cf5d8-5920-4c2c-b8f0-9ca158bd58f3"
+      },
+      "execution_count": 56,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "2021.2355035376254"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 56
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.unique(mood[step_count>=4000], return_counts=True)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "KeVwZSwlIWNB",
+        "outputId": "d3c8406c-27a5-4150-e0b1-78615b7b5af2"
+      },
+      "execution_count": 60,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(array(['Happy', 'Neutral', 'Sad'], dtype='<U10'), array([22,  9,  7]))"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 60
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "np.unique(mood[step_count<4000],return_counts=True)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "w42iy3yvIzvx",
+        "outputId": "e708d666-7e29-4520-c1e0-635051fdf0a2"
+      },
+      "execution_count": 62,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(array(['Happy', 'Neutral', 'Sad'], dtype='<U10'), array([18, 18, 22]))"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 62
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "A = np.arange(12).reshape(3,4)"
+      ],
+      "metadata": {
+        "id": "0MOGVFrxJkRY"
+      },
+      "execution_count": 65,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "A.reshape(1,12)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MFHljmHELa8V",
+        "outputId": "ca66760b-a521-4194-cc27-eabdec736e46"
+      },
+      "execution_count": 67,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11]])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 67
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "uZp5sVV4LrG9"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
